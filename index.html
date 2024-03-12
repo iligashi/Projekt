@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="news.css">
+    <title>News</title>
+</head>
+<body>
+    <header>
+        <div  class="nav-bar">
+            <div class="logo-news">
+                <img src="images/logo.png"/>
+                <hr style="width:90%;
+                text-align:center;
+                margin-left:0 ; color: red ; border: 2px solid;
+                margin-right: 0;">
+                <div class="line-in-logo"></div>
+            </div>
+  </head>
+  <body>
+  <div class="nav-bar-buttons">
+  <div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </div>
+  <div class="buttons-nav">
+    <button class="login-btn">Log in</button>
+    <button class="signup-btn">Sign up</button>
+  </div>
+</div>
+
+<br>
+<br>
+<div class="slider-form-fix">
+<div class="slider">
+    <div class="slide active">
+      <img
+        src="images/health1.webp"
+        alt="Image 1"
+      />
+    </div>
+    <div class="slide">
+      <img
+        src="images/health2.webp"
+        alt="Image 2"
+      />
+    </div>
+    <div class="slide">
+      <img
+        src="images/health3.webp"
+        alt="Image 3"
+      />
+    </div>
+  </div>
+  <div class="new-news">
+    <form action="$POST">
+      <div class="form-group">
+        <input type="text" name="text" placeholder="Date" required>
+        <input type="text" name="Autori" placeholder="Author" required>
+      </div>
+      <div class="form-group">
+        <input type="text" name="Titulli" placeholder="Title of news" required>
+      </div>
+      <div class="form-group">
+        <textarea name="Text" placeholder="Description" required></textarea>
+      </div>
+      <div class="form-group">
+        <input type="submit" name="Submit" value="Submit News">
+      </div>
+    </form>
+  </div>
+  
+</div>
+
+  <script src="news.js"></script>
+  </body>
+  </html>
+  
