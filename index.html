@@ -7,73 +7,168 @@
     <title>News</title>
 </head>
 <body>
+  <div class="header-contentt" style=" background-color: #00000096;
+  width: 100%;">
     <header>
         <div  class="nav-bar">
             <div class="logo-news">
                 <img src="images/logo.png"/>
                 <hr style="width:90%;
                 text-align:center;
-                margin-left:0 ; color: red ; border: 2px solid;
-                margin-right: 0;">
+                color: red ; border: 2px solid;
+               ">
                 <div class="line-in-logo"></div>
             </div>
   </head>
   <body>
   <div class="nav-bar-buttons">
   <div class="topnav">
-    <a class="active" href="#home">Home</a>
+    <a class="active" href="index.html">Home</a>
     <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+    <a href="contactus.html">Contact</a>
+    <!-- <a href="#about">About</a> -->
   </div>
   <div class="buttons-nav">
-    <button class="login-btn">Log in</button>
-    <button class="signup-btn">Sign up</button>
+    <button class="login-btn" ><a href="login.html" style="text-decoration: none;color: #fffffff5 !important;
+        ;">Log in</a></button>
+    <button class="signup-btn"><a href="signup.html" style="text-decoration: none; color: black;" >Sign up</a></button>
   </div>
 </div>
-
+</div></div>
 <br>
 <br>
 <div class="slider-form-fix">
-<div class="slider">
-    <div class="slide active">
-      <img
-        src="images/health1.webp"
-        alt="Image 1"
-      />
+    <div class="slider">
+      <div class="slide active">
+        <img src="images/breaking-news.jpg" alt="Image 1" />
+      </div>
+      <div class="slide">
+        <img src="images/sportnews.jpg" alt="Image 2" />
+      </div>
+      <div class="slide">
+        <img src="images/health-news.jpg" alt="Image 3" />
+      </div>
     </div>
-    <div class="slide">
-      <img
-        src="images/health2.webp"
-        alt="Image 2"
-      />
-    </div>
-    <div class="slide">
-      <img
-        src="images/health3.webp"
-        alt="Image 3"
-      />
+
+    <div class="new-news">
+      <form action="$POST">
+        <div class="form-group">
+          <input type="text" name="text" placeholder="Date" required>
+          <input type="text" name="Autori" placeholder="Author" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="Titulli" placeholder="Title of news" required>
+        </div>
+        <div class="form-group">
+          <textarea name="Text" placeholder="Description" required></textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="Submit" value="Submit News">
+        </div>
+      </form>
     </div>
   </div>
-  <div class="new-news">
-    <form action="$POST">
-      <div class="form-group">
-        <input type="text" name="text" placeholder="Date" required>
-        <input type="text" name="Autori" placeholder="Author" required>
-      </div>
-      <div class="form-group">
-        <input type="text" name="Titulli" placeholder="Title of news" required>
-      </div>
-      <div class="form-group">
-        <textarea name="Text" placeholder="Description" required></textarea>
-      </div>
-      <div class="form-group">
-        <input type="submit" name="Submit" value="Submit News">
-      </div>
-    </form>
-  </div>
-  
+
+  <br><br><br>
+ <div id="news">
+  <div class="fotografit">
+    <div class="rubrika">
+        <img src="images/breaking-news.jpg" alt="" class="img-0">
+        <div class="views_date">
+            <p style="font-weight: 700;
+            font-size: 20px;
+            font-family: system-ui;
+            color: rgb(74 87 83);">Breaking News</p>
+           
+        </div>
+    </div>
+    <div class="rubrika">
+        <img src="images/fashion news.webp" alt="" class="img-6">
+        <div class="views_date">
+            <p style="font-weight: 700;
+            font-size: 20px;
+            font-family: system-ui;
+            color: rgb(74 87 83);">Fashion News</p>
+        </div>
+    </div>
+    <div class="rubrika">
+        <img src="images/health-news.jpg" alt="" class="img-1">
+        <div class="views_date">
+            <p style="font-weight: 700;
+            font-size: 20px;
+            font-family: system-ui;
+            color: rgb(74 87 83);">Health News</p>
+        </div>
+    </div>
+    <div class="rubrika">
+        <img src="images/lifestyle-news.jpg" alt="" class="img-3">
+        <div class="views_date">
+            <p style="font-weight: 700;
+            font-size: 20px;
+            font-family: system-ui;
+            color: rgb(74 87 83);">Fashion News</p>
+        
+        </div>
+    </div>
+    <div class="rubrika">
+        <img src="images/socialmedia-news.png" alt="" class="img-4">
+        <div class="views_date">
+            <p style="font-weight: 700;
+            font-size: 20px;
+            font-family: system-ui;
+            color: rgb(74 87 83);">Social Media</p>
+        </div>
+    </div>
+    <div class="rubrika">
+        <img src="images/sportnews.jpg" alt="" class="img-5">
+        <div class="views_date">
+            <p style="font-weight: 700;
+            font-size: 20px;
+            font-family: system-ui;
+            color: rgb(74 87 83);">Sport News</p>
+        </div>
+    </div>
 </div>
+  </div>
+  <br>
+  <br>
+  <br><br><br><br><br>
+  <footer class="footer">
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+    </ul>
+    <p>2024 Ilaz Gashi | All Rights Reserved</p>
+  </footer>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  
+  
 
   <script src="news.js"></script>
   </body>
