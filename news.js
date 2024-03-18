@@ -13,4 +13,30 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(showSlides, 3000);
     }
   });
+
   
+  document.addEventListener('DOMContentLoaded', function () {
+    const BtnSubmit = document.getElementById('BtnSubmit');
+
+
+    function validateForm() {
+        const Data = document.getElementById('Data').value;
+        const Titulli = document.getElementById('Titulli').value;
+        const Description = document.getElementById('Description').value;
+        const Autori = document.getElementById('Autori').value;
+
+
+        
+        if (Data === "" || Titulli === "" || Description === "" || Autori === "") {
+
+            alert("Please fill in all the fields.");
+            return false;
+         }
+      
+
+      BtnSubmit.addEventListener('click', validateForm);
+
+        }
+
+}
+);
