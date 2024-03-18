@@ -87,7 +87,7 @@
   border: none;
   outline: none;
   cursor: pointer;
-  background: #1877f2;
+  background: #f21818;
   padding: 15px 0;
   border-radius: 6px;
   color: #fff;
@@ -97,7 +97,7 @@
 }
 
 .link-scanova-login .login:hover {
-  background: #0d65d9;
+  background: #ee2e2e;
 }
 
 .form-login  a {
@@ -129,7 +129,7 @@ hr {
 
 .button-login1 a {
   padding: 15px 20px;
-  background: #42b72a;
+  background: #000000;
   border-radius: 6px;
   color: #fff;
   font-size: 1.063rem;
@@ -138,7 +138,7 @@ hr {
 }
 
 .button-login1 a:hover {
-  background: #3ba626;
+  background: #302828;
 }
 
 @media (max-width: 900px) {
