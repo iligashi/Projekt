@@ -23,7 +23,7 @@
   <body>
   <div class="nav-bar-buttons">
   <div class="topnav">
-    <a class="active" href="index.html">Home</a>
+    <a class="active" href="index.php">Home</a>
     <a href="#news">News</a>
     <a href="contactus.php">Contact</a>
     <!-- <a href="#about">About</a> -->
@@ -49,25 +49,31 @@
         <img src="images/health-news.jpg" alt="Image 3" />
       </div>
     </div>
+    <style>
+        .slider {
+  width: 80%;
+  overflow: hidden;
+  border-radius: 1.5px;
+  position: relative;
+  margin-left: 15em; /* Center horizontally */
 
-    <!-- <div class="new-news">
-      <form action="#" method="$POST">
-        <div class="form-group">
-          <input type="text" name="text" placeholder="Date" required id="Data">
-          <input type="text" name="Autori" placeholder="Author" required  id="Autori">
-        </div>
-        <div class="form-group">
-          <input type="text" name="Titulli" placeholder="Title of news" required id="Titulli"> 
-        </div>
-        <div class="form-group">
-          <textarea name="Pershkrimi" placeholder="Description" required  id="Description"></textarea>
-        </div>
-        <div class="form-group">
-          <input type="submit" name="Submit" value="Submit News" id="BtnSubmit">
-        </div>
-      </form>
-    </div> -->
-  <!-- </div> -->
+}
+
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 612px;
+  max-height: 397px;
+  height: auto;
+}
+
+    </style>
 
   <br><br><br>
  <div id="news">
@@ -128,7 +134,43 @@
             color: rgb(74 87 83);">Sport News</p>
         </div>
     </div>
-</div>
+
+  <?php
+  $servername = "localhost";
+    $username = "root"; 
+    $password = ""; 
+    $dbname = "db"; 
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Fetch data from database
+    $sql = "SELECT title, photo FROM rubrika ORDER BY id DESC"; // Assuming 'id' is the primary key
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo '<div class="rubrika">';
+            echo '<img src="' . $row["photo"] . '" alt="" class="img-new">';
+            echo '<div class="views_date">';
+            echo '<p style="font-weight: 700; font-size: 20px; font-family: system-ui; color: rgb(74, 87, 83);">' . $row["title"] . '</p>';
+            echo '</div>';
+            echo '</div>';
+        }
+    } else {
+        echo "No news found.";
+    }
+
+
+    $conn->close();
+    ?>
+    </div>
   </div>
   <br>
   <br>
