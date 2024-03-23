@@ -12,13 +12,21 @@
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
   <h3 class="w3-bar-item">News Dashboard</h3>
   <a href="#" class="w3-bar-item w3-button" onclick="showUsers()">Users</a>
-  <!-- <a href="#" class="w3-bar-item w3-button" onclick="showUserMessages()">User Messages</a> -->
+  <!-- <a href="#" class="w3-bar-item w3-button" onclick="showUserNews()">News</a> -->
   <a href="#" class="w3-bar-item w3-button" onclick="showBlogForm()">Contact Us</a>
+  <a href="#" class="news-col" onclick="showNews()" style="    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0;
+    text-decoration: none;"> News</a>
 </div>
 
 <!-- Page Content -->
 <div style="margin-left:25%">
-
 <div class="w3-container w3-teal users-header">
   <h1>News</h1>
  <a href="index.php" style="text-decoration: none; color: white;">Back to Homepage</a>
@@ -33,8 +41,6 @@ $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Edit user functionality
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_user'])) {
     $userId = $_POST['edit_user'];
     $firstName = isset($_POST['firstName']) ? $_POST['firstName'] : '';
@@ -48,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_user'])) {
         echo "Error updating user: " . $conn->error;
     }
 }
-
-// Delete user functionality
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user'])) {
     $userId = $_POST['delete_user'];
 
@@ -233,6 +237,200 @@ function deleteUser(userId) {
     
     ?>
   </table>
+  
+</div>
+
+<div id="NewsView" class="p-20" style="display:none" >
+<table class="w3-table-all">
+    <?php 
+      $host = "localhost";
+      $dbUsername = "root";
+      $dbPassword = "";
+      $dbname = "db";
+      
+      $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+      
+      $sql = "SELECT * FROM rubrika";
+      $result = $conn->query($sql);
+      if ($result) {
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo '<div class="rubrika">';
+            echo '<img src="' . $row["photo"] . '" alt="" class="img-new">';
+            echo '<div class="views_date">';
+            echo '<p>' . $row["title"] . '</p>';
+            echo '</div>';
+            echo '<div class="actions">';
+            echo '<button class="edit-btn" onclick="editNews(' . $row["id"] . ')">Edit</button>';
+            echo '<button class="delete-btn" onclick="deleteNews(' . $row["id"] . ')">Delete</button>';
+            echo '</div>';
+            echo '</div>';
+          }
+        } else {
+            echo "No results found.";
+        }
+        
+          $result->free();
+      } else {
+          $error_message = "Error: " . $sql . "<br>" . $conn->error;
+          error_log($error_message);
+          die($error_message);
+      }
+      
+      $conn->close();
+    
+    ?>
+  </table>
+  <?php
+$host = "localhost";
+$dbUsername = "root";
+$dbPassword = "";
+$dbname = "db";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['edit_news'])) {
+        // Handle editing news title
+        $newsId = $_POST['edit_news'];
+        $newTitle = $_POST['new_title'];
+
+        $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "UPDATE rubrika SET title='$newTitle' WHERE id='$newsId'";
+        if ($conn->query($sql) === TRUE) {
+            echo "News title updated successfully";
+        } else {
+            echo "Error updating news title: " . $conn->error;
+        }
+
+        $conn->close();
+    } elseif (isset($_POST['delete_news'])) {
+        // Handle deleting news
+        $newsId = $_POST['delete_news'];
+
+        $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "DELETE FROM rubrika WHERE id='$newsId'";
+        if ($conn->query($sql) === TRUE) {
+            echo "News deleted successfully";
+        } else {
+            echo "Error deleting news: " . $conn->error;
+        }
+
+        $conn->close();
+    }
+}
+?>
+
+<script>
+function editNews(newsId) {
+    var newTitle = prompt("Enter the new title:");
+    if (newTitle !== null) {
+        var formData = new FormData();
+        formData.append('edit_news', newsId);
+        formData.append('new_title', newTitle);
+
+        fetch('edit_news.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Display response message
+            // Reload the page to update the news list
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+}
+
+function deleteNews(newsId) {
+    if (confirm('Are you sure you want to delete this news?')) {
+        var formData = new FormData();
+        formData.append('delete_news', newsId);
+
+        fetch('delete_news.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); 
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+}
+</script>
+
+  <style>
+
+  #NewsView {
+    display: none;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .rubrika {
+    margin-bottom: 20px;
+  }
+  .rubrika img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  .rubrika .views_date {
+    display: flex;
+    align-items: center;
+  }
+  .rubrika .views_date p {
+    margin: 0;
+  }
+  .rubrika .actions {
+    margin-top: 10px;
+  }
+  /* CSS for edit and delete buttons */
+.actions {
+    display: flex;
+    gap: 10px; /* Adjust the space between buttons */
+}
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #f44336;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background-color: #45a049;
+}
+
+.edit-btn:focus, .delete-btn:focus {
+    outline: none;
+}
+
+</style>
 </div>
 
 <script>
@@ -242,21 +440,33 @@ function showUsers() {
   document.getElementById('blogView').style.display = 'none';
 }
 
-function showUserMessages() {
+function showUserNews() {
   document.getElementById('usersView').style.display = 'none';
   document.getElementById('userMessagesView').style.display = 'block';
   document.getElementById('blogView').style.display = 'none';
+  document.getElementById('NewsView').style.display = 'none';
+
 }
 
 function showBlogForm() {
   document.getElementById('usersView').style.display = 'none';
   document.getElementById('userMessagesView').style.display = 'none';
   document.getElementById('blogView').style.display = 'block';
+  document.getElementById('NewsView').style.display = 'none';
+
+}
+function showNews(){
+  document.getElementById('usersView').style.display = 'none';
+  document.getElementById('userMessagesView').style.display = 'none';
+  document.getElementById('blogView').style.display = 'none';
+  document.getElementById('NewsView').style.display = 'block';
+
 }
 document.addEventListener('DOMContentLoaded', function() {
   showUsers();
 });
 </script>
+
 
 </body>
 </html>
