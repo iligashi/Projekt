@@ -26,7 +26,6 @@
     <a class="active" href="index.php">Home</a>
     <a href="#news">News</a>
     <a href="contactus.php">Contact</a>
-    <!-- <a href="#about">About</a> -->
   </div>
   <div class="buttons-nav">
     <button class="login-btn" ><a href="login.php" style="text-decoration: none;color: #fffffff5 !important;
@@ -34,7 +33,8 @@
     <button class="signup-btn"><a href="signup.php" style="text-decoration: none; color: black;" >Sign up</a></button>
   </div>
 </div>
-</div></div>
+</div>
+</div>
 <br>
 <br>
 <!-- <div class="slider-form-fix"> -->
@@ -51,12 +51,14 @@
     </div>
     <style>
         .slider {
-  width: 80%;
-  overflow: hidden;
-  border-radius: 1.5px;
-  position: relative;
-  margin-left: 15em; /* Center horizontally */
-
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: -1px 15px 20px 5px rgb(255 0 0);
 }
 
 .slide {
@@ -65,12 +67,25 @@
 
 .slide.active {
   display: block;
+  animation: slideIn 1s ease-in-out forwards;
 }
 
-.slide img {
-  width: 612px;
-  max-height: 397px;
-  height: auto;
+@keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  
 }
 
     </style>
@@ -84,54 +99,94 @@
             <p style="font-weight: 700;
             font-size: 20px;
             font-family: system-ui;
-            color: rgb(74 87 83);">Breaking News</p>
+            color: rgb(74 87 83);
+            background: #FFFFFF;
+    box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.10);
+    border-radius: 20px;">Breaking News</p>
            
         </div>
     </div>
+    <style>
+    
+  .rubrika {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 50px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .rubrika:hover {
+    transform: translateY(-5px);
+  }
+
+  .rubrika img {
+    max-width: 300px;
+    height: auto;
+    /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
+    object-fit: cover;
+  }
+
+  .views_date {
+    /* padding: 20px; */
+    background-color: #fff;
+    flex-grow: 1;
+    /* border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; */
+  }
+
+  .rubrika p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+    color: #4a5753;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .rubrika p:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 4px;
+    background-color: #4a5753;
+    margin-bottom: 10px;
+  }
+  
+  
+    </style>
     <div class="rubrika">
         <img src="images/fashion news.webp" alt="" class="img-6">
         <div class="views_date">
-            <p style="font-weight: 700;
-            font-size: 20px;
-            font-family: system-ui;
-            color: rgb(74 87 83);">Fashion News</p>
+            <p >Fashion News</p>
         </div>
     </div>
     <div class="rubrika">
         <img src="images/health-news.jpg" alt="" class="img-1">
         <div class="views_date">
-            <p style="font-weight: 700;
-            font-size: 20px;
-            font-family: system-ui;
-            color: rgb(74 87 83);">Health News</p>
+            <p>Health News</p>
         </div>
     </div>
     <div class="rubrika">
         <img src="images/lifestyle-news.jpg" alt="" class="img-3">
         <div class="views_date">
-            <p style="font-weight: 700;
-            font-size: 20px;
-            font-family: system-ui;
-            color: rgb(74 87 83);">Fashion News</p>
-        
+            <p>Fashion News</p>
         </div>
     </div>
     <div class="rubrika">
         <img src="images/socialmedia-news.png" alt="" class="img-4">
         <div class="views_date">
-            <p style="font-weight: 700;
-            font-size: 20px;
-            font-family: system-ui;
-            color: rgb(74 87 83);">Social Media</p>
+            <p>Social Media</p>
         </div>
     </div>
     <div class="rubrika">
         <img src="images/sportnews.jpg" alt="" class="img-5">
         <div class="views_date">
-            <p style="font-weight: 700;
-            font-size: 20px;
-            font-family: system-ui;
-            color: rgb(74 87 83);">Sport News</p>
+            <p>Sport News</p>
         </div>
     </div>
 
@@ -159,7 +214,7 @@
             echo '<div class="rubrika">';
             echo '<img src="' . $row["photo"] . '" alt="" class="img-new">';
             echo '<div class="views_date">';
-            echo '<p style="font-weight: 700; font-size: 20px; font-family: system-ui; color: rgb(74, 87, 83);">' . $row["title"] . '</p>';
+            echo '<p>' . $row["title"] . '</p>';
             echo '</div>';
             echo '</div>';
         }
@@ -170,6 +225,7 @@
 
     $conn->close();
     ?>
+    
     </div>
   </div>
   <br>
