@@ -20,54 +20,66 @@
     <button type="submit">Insert</button>
 </form>
 <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
 
-    form {
-        width: 300px;
-        padding: 20px;
-        background-color: #f2f2f2;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+form {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: linear-gradient(to bottom right, #ffffff, #f3f4f6);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
 
-    .form-group {
-        margin-bottom: 15px;
-    }
+.form-group {
+    margin-bottom: 25px;
+}
 
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
 
-    input[type="text"],
-    input[type="file"] {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d8e0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
 
-    button[type="submit"] {
-        background-color: red;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
+input[type="text"]:focus,
+input[type="file"]:focus {
+    border-color: #4dabf7;
+    outline: none;
+}
 
-    button[type="submit"]:hover {
-        background-color: brown;
-    }
+button[type="submit"] {
+    background-color: red;
+    color: #fff;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: red;
+}
+
 </style>
 
 </body>
@@ -78,19 +90,19 @@ $username = "root";
 $password = ""; 
 $dbname = "db"; 
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if all required fields are filled
     if (!empty($_POST['title']) && isset($_FILES['photo'])) {
-        // Escape user inputs for security
+
         $title = $conn->real_escape_string($_POST['title']);
         
         // File upload handling
@@ -108,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $uploadOk = 0;
         }
         
-        // Check file size
+  
         if ($_FILES["photo"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
